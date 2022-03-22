@@ -21,11 +21,27 @@ namespace Snake
 			this.sym = sym;
 		}
 
-		public Point CreateFood()//генератор
+		public Point CreateFood()//генератор обычной еды
 		{
 			int x = random.Next(2, mapWidht - 2);
 			int y = random.Next(2, mapHeight - 2);
 			return new Point(x, y, sym);
 		}
+
+		public Point CreateRareFood()//генератор редкой еды
+        {
+			int rNum = random.Next(0, 2);
+
+			if (rNum==1)
+            {
+				int x = random.Next(2, mapWidht - 2);
+				int y = random.Next(2, mapHeight - 2);
+				return new Point(x, y, sym);
+			}
+            else
+            {
+				return new Point(0, 0, '+');
+			}
+        }
 	}
 }

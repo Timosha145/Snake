@@ -52,7 +52,7 @@ namespace Snake
 			return false;
 		}
 
-		public void HandleKey(ConsoleKey key)
+		public void HandleKey(ConsoleKey key)//опредеояет по нажатой клавише направление змеи
 		{
 			if (key == ConsoleKey.LeftArrow)
 				direction = Direction.LEFT;
@@ -64,13 +64,27 @@ namespace Snake
 				direction = Direction.UP;
 		}
 
-		public bool Eat(Point food)
+		public bool Eat(Point food)//сьела ли змея еду
 		{
 			Point head = GetNextPoint();
 			if (head.IsHit(food))
 			{
 				food.sym = head.sym;
 				pList.Add(food);
+
+				return true;
+			}
+			else
+				return false;
+		}
+		public bool RareEat(Point rareFood)//сьела ли змея редкую еду
+		{
+			Point head = GetNextPoint();
+			if (head.IsHit(rareFood))
+			{
+				rareFood.sym = head.sym;
+				pList.Add(rareFood);
+
 				return true;
 			}
 			else
